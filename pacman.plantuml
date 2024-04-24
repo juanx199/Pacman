@@ -2,6 +2,11 @@
 
 
 Class Juego {
+    +update():void
+    +gameOver():boole
+    +coliciones():void
+    +run():void
+    
 }
 
 
@@ -12,22 +17,31 @@ Juego *-- Fantasma
 Juego *-- Fruta
 Juego *-- Mapa
 Juego *-- Pastilla 
-Mapa *- Pacman 
+Pacman --* Mapa
+Fantasma --* Mapa
 
 Class Fantasma {
+    velocidad
+    posicion_x
+    posicion_y    
 }
 Class Pacman {
-    +vidas
-    -velocidad
+    vidas
+    velocidad
+    posicion_x
+    posicion_y
 }
 Class Fruta {
-    -desaparecer
+    puntos
+    desaparecer()
 }
 Class Mapa {
+    tablaDePuntos()
 }
 Class Dots{
 }
 Class Fentanilo {
+
 }
 }
 interface Dibujable {
@@ -37,16 +51,21 @@ interface Personaje {
     -moverse()
     -morir()
     -matar()
+    -resurreccion()
 }
 
-Dibujable <|.. Pacman
-Dibujable <|.. Fruta
-Dibujable <|.. Fantasma
-Dibujable <|.. Dots
-Dibujable <|.. Fentanilo
+Pacman ..|> Dibujable
+Fruta ..|> Dibujable
+Fantasma ..|> Dibujable
+Dots ..|> Dibujable
+Fentanilo ..|> Dibujable
 
-Personaje <|.. Pacman
-Personaje <|.. Fantasma
+Pacman ..|> Personaje 
+Fantasma ..|> Personaje
+
+' Personaje 
+
+' Personaje Fantasma
 
 
 
