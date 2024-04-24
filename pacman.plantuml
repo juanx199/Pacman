@@ -1,0 +1,53 @@
+@startuml
+
+
+Class Juego {
+}
+
+
+package logik{
+
+Juego *-- Pacman
+Juego *-- Fantasma
+Juego *-- Fruta
+Juego *-- Mapa
+Juego *-- Pastilla 
+Mapa *- Pacman 
+
+Class Fantasma {
+}
+Class Pacman {
+    +vidas
+    -velocidad
+}
+Class Fruta {
+    -desaparecer
+}
+Class Mapa {
+}
+Class Dots{
+}
+Class Fentanilo {
+}
+}
+interface Dibujable {
+    dibujar()
+}
+interface Personaje {
+    -moverse()
+    -morir()
+    -matar()
+}
+
+Dibujable <|.. Pacman
+Dibujable <|.. Fruta
+Dibujable <|.. Fantasma
+Dibujable <|.. Dots
+Dibujable <|.. Fentanilo
+
+Personaje <|.. Pacman
+Personaje <|.. Fantasma
+
+
+
+@enduml
