@@ -2,71 +2,83 @@
 
 
 Class Juego {
-    +update():void
-    +gameOver():boole
-    +coliciones():void
-    +run():void
+    +update() : void
+    +gameOver() : bool
+    +run(jugar : bool) : void
     
 }
 
 
-package logik{
 
-Juego *-- Pacman
-Juego *-- Fantasma
-Juego *-- Fruta
+Personaje <|-- Pacman
+Personaje <|-- Fantasma
+Personaje --> Mapa
+
+Juego *-- Personaje
+Juego o-- Fruta
 Juego *-- Mapa
 Juego *-- Pastilla 
-Pacman --* Mapa
-Fantasma --* Mapa
+Juego *-- Dots
 
+Pacman o-- Pastilla
+Pacman o-- Dots
+Pacman o-- Fruta
+Class Personaje{
+    - posicion_x: int
+    - posicion_y: int
+    + mover(dx: int, dy: int): void
+    + verificarColisiones(): void
+}
 Class Fantasma {
-    velocidad
-    posicion_x
-    posicion_y    
+    + velocidad : float  
+
 }
 Class Pacman {
-    vidas
-    velocidad
-    posicion_x
-    posicion_y
-}
-Class Fruta {
-    puntos
-    desaparecer()
-}
-Class Mapa {
-    tablaDePuntos()
-}
-Class Dots{
-}
-Class Fentanilo {
+    + vidas : int
+    + velocidad : float
+    + score : int 
+    + superPoder(Activo: boolean): void
+    + comerPunto(): void
+    + comerFruta(): void
+    + perderVida(): void
 
 }
+Class Fruta {
+    + puntos
+    + desaparecer()
 }
+Class Mapa {
+    + obtenerContenidoCelda()
+    + cargarMapa() : void
+    + verificarColisiones(personaje: Personaje): void
+}
+Class Dots{
+    + puntos
+    + desaparecer()
+}
+Class Pastilla {
+    + Activo : bool
+    + darPoder() : bool
+
+}
+
 interface Dibujable {
     dibujar()
 }
-interface Personaje {
-    -moverse()
-    -morir()
-    -matar()
-    -resurreccion()
+interface Animacion {
+    moverse()
+    morir()
+    matar()
+    resurreccion()
 }
-
-Pacman ..|> Dibujable
+Personaje .|> Animacion 
+Personaje ..|> Dibujable
 Fruta ..|> Dibujable
-Fantasma ..|> Dibujable
 Dots ..|> Dibujable
-Fentanilo ..|> Dibujable
-
-Pacman ..|> Personaje 
-Fantasma ..|> Personaje
-
-' Personaje 
-
-' Personaje Fantasma
+Pastilla ..|> Dibujable
+Mapa ..|> Dibujable
 
 
-
+Fruta <|-- Cereza
+Fruta <|-- Piña
 @enduml
