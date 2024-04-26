@@ -6,3 +6,4 @@
 ## Este archivo contiene un diagrama que modela las clases que tendría el juego "Pacman" haciendo uso de ingeniería inversa
 ### Diagrama borrador
 ### Diagrama final
+![Diagrama pacman](/images/nuevo.png)
